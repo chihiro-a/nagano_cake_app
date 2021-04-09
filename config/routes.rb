@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     get "/" => "homes#index"
     # ここtopアクションにしたいらしい…
     resources :items, except: [:destroy]
+    #get "admin/items/new" => "admin/items#new"
+    # "admin/items" => "admin/items#create"
 
   end
 end
