@@ -15,11 +15,12 @@
   <h4>販売ステータス</h4>
 
 
-  <%= f.label :status, '販売中', value: 0 ,checked: "checked" %>
-  <%= f.radio_button :is_active, '0' %>
-  <%= f.label :status, '販売停止中', value: 1 %>
-  <%= f.radio_button :is_active, '1' %>
-  <h1>デフォルトで販売中にチェックをつけられない！！</h1>
+  <%= f.label :status, '販売中', value: true ,checked: "checked" %>
+  <%= f.radio_button :is_active, 'true' %>
+  <%= f.label :status, '販売停止中', value: false %>
+  <%= f.radio_button :is_active, 'false' %>
+
+
 
 
   <%= f.submit '新規登録'  %>

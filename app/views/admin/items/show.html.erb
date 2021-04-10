@@ -1,1 +1,31 @@
 商品詳細画面
+<%= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg'%>
+<table>
+    <tr>
+        <th>商品名</th>
+        <tb><%= @item.name %></tb>
+    </tr>
+    <tr>
+        <th>商品説明</th>
+        <tb><%= @item.introduction %></tb>
+    </tr>
+    <tr>
+        <th>ジャンル</th>
+        <tb><%= @item.genre_id %></tb>
+    </tr>
+    <tr>
+        <th>税込価格<br>(税込価格）</th>
+        <tb><%= @item.price %></tb>
+    </tr>
+    <tr>
+        <th>販売ステータス</th>
+        <tb>
+        <% if @item.is_active == true %>
+        <%= "販売中" %>
+        <% else %>
+        <%= "販売停止中" %>
+        <% end %>
+        </tr>
+</table>
+
+<%= link_to "編集する" ,edit_admin_item_path(@item.id) ,class:"btn btn-success "%>

@@ -3,4 +3,5 @@ class Genre < ApplicationRecord
     cake: 0, #ケーキ
     pudding: 1, #プリン
   }
+  has_many :items
 end
