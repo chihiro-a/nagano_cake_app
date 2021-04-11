@@ -5,7 +5,12 @@ Rails.application.routes.draw do
     registras: 'admins/registras',
     registrations: 'admins/registrations'
   }
-  devise_for :customers
+  devise_for :customers, controllers: {
+    sessions: 'customers/sessions',
+    passwords: 'customers/passwords',
+    registras: 'customers/registras',
+    registrations: 'customers/registrations'
+  }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :admin do
     get "/" => "homes#index"
@@ -14,6 +19,11 @@ Rails.application.routes.draw do
     #get "admin/items/new" => "admin/items#new"
     # "admin/items" => "admin/items#create"
     resources :genres, only: [:index, :create, :edit, :update]
-
+    resources :customers, only: [:index, :show, :edit, :update]
+  end
+  namespace :public do
+    get "/" => "homes#top"
+    get "/about" => "homes#about"
+    # アバウトページ表示できない…
   end
 end
