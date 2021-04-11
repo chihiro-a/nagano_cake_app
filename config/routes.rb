@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :items, except: [:destroy]
     #get "admin/items/new" => "admin/items#new"
     # "admin/items" => "admin/items#create"
+    resources :genres, only: [:index, :create, :edit, :update]
 
   end
 end

@@ -1,0 +1,6 @@
+ジャンル編集画面
+<%= form_with model: @genre,url:admin_genre_path, local:true do |f| %>
+ジャンル名
+<%= f.text_field :name %>
+<%= f.submit '新規登録',class:'btn btn-success' %>
+<% end %>
