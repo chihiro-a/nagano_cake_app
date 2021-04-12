@@ -1,0 +1,6 @@
+顧客からみた商品一覧画面
+<% @items.each do |item| %>
+<div><%= item.name %></div>
+<div><%= item.introduction %></div>
+<div><%= link_to "商品詳細" ,public_item_path(item.id) %></div>
+<% end %>

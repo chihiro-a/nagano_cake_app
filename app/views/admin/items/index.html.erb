@@ -8,11 +8,13 @@
     <th>ステータス</th>
   </tr>
   <tr>
-    <td>１</td>
-    <td>洋梨のチーズタルト</td>
-    <td>600</td>
-    <td>ジャンル</td>
+    <% @items.each do |item| %>
+    <td><%= item.id %></td>
+    <td><%= item.name %></td>
+    <td><%= item.price %></td>
+    <td><%= item.genre_id %></td>
     <td>ステータス</td>
+    <% end %>
   </tr>
   <!--<tr>-->
     <!--% @items.each do |item|%>-->
