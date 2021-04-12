@@ -25,5 +25,9 @@ Rails.application.routes.draw do
     get "/" => "homes#top"
     get "/about" => "homes#about"
     # アバウトページ表示できない…
+    resources :customers, only: [:show, :edit, :update]
+    get "/unsubscribe" => "customers#unsubscribe"
+    patch "/customers" => "customers#withdraw"
   end
+
 end
