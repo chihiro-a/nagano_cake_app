@@ -1,10 +1,20 @@
 顧客から見た商品詳細画面
+
 <div>
-    <%= @item.name%>
+    <%= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg'%>
 </div>
 <div>
     <%= @item.name %>
 </div>
 <div>
-    <%= @item.price %>
+    ¥<%= @price.floor %>（税込）
+</div>
+
+<div>
+<%= form_with model: @cart_item, url:cart_items_path,local:true do |f| %>
+
+<%= f.select :amount, [['1',1], ['2',2],], {include_blank: '個数選択'}, class: 'amount' %>
+<%= f.hidden_field :item_id, value: @item.id %>
+<%= f.submit"カートに入れる" %>
+<% end %>
 </div>

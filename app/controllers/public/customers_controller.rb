@@ -10,17 +10,21 @@ class Public::CustomersController < ApplicationController
     def update
       @customer = Customer.find(current_customer.id)
       @customer.update(customer_params)
-      redirect_to public_customer_path(current_customer.id)
+      redirect_to customers_path(current_customer.id)
+      # ユーザ情報詳細へリダイレクト
     end
 
     def unsubscribe
     end
 
     def withdraw
+      # is_activeをfalseにする処理
+      @customer = Customer.find(current_customer.id)
     end
 
     private
     def customer_params
       params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :telephone_number, :adress)
     end
+
 end

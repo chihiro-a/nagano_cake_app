@@ -16,8 +16,6 @@ Rails.application.routes.draw do
     get "/" => "homes#index"
     # ここtopアクションにしたいらしい…
     resources :items, except: [:destroy]
-    #get "admin/items/new" => "admin/items#new"
-    # "admin/items" => "admin/items#create"
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
   end
@@ -25,10 +23,35 @@ Rails.application.routes.draw do
     get "/" => "homes#top"
     get "/about" => "homes#about"
     # アバウトページ表示できない…
-    resources :customers, only: [:show, :edit, :update]
+    resources :customers, only: [:show, :edit, :update,]
     get "/unsubscribe" => "customers#unsubscribe"
     patch "/customers" => "customers#withdraw"
     resources :items, only: [:index, :show]
   end
+
+  get "/" => "public/homes#top"
+  get "/about" => "public/homes#about"
+  get "/customers" => "public/customers#show"
+  get "/customers/edit" => "public/customers#edit"
+  # deviseで作成したルーティングと被っている…deviseで作成したルーティングを削除したい
+  patch "/customers" => "public/customers#update"
+  get "/customers/delete" => "public/customers#unsubscribe"
+  # 退会臥煙の表示
+  patch "customers/withdraw" => "public/customers/withdraw"
+  # 退会処理実行
+
+  get "/cart_items" => "public/cart_items#index"
+  patch "/cart_items/:id" => "public/cart_items#update"
+  delete "/cart_items/:id" => "public/cart_items#destroy"
+  delete "/cart_items" => "public/cart_items#reset"
+  post "/cart_items" => "public/cart_items#create"
+
+  get "/orders/new" => "public/orders#new"
+  post "/orders/comfirm" => "public/orders#comfirm"
+  get "orders/thanks" => "public/orders#thanks"
+  post "/oeders" => "public/oeders#create"
+  get "/orders" => "public/orders#index"
+  get "/oeders/:id" => "public/oeders#show"
+
 
 end

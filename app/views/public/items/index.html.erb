@@ -1,6 +1,8 @@
 顧客からみた商品一覧画面
+<h3>商品一覧（全<%= "#{@items.count}"%>件）</h3>
 <% @items.each do |item| %>
+<div><%= attachment_image_tag item,:image, :fill, 100, 100, format: 'jpeg' %></div>
 <div><%= item.name %></div>
-<div><%= item.introduction %></div>
+<div><%= item.price %></div>
 <div><%= link_to "商品詳細" ,public_item_path(item.id) %></div>
 <% end %>
