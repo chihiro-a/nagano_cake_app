@@ -12,16 +12,25 @@ class Public::CartItemsController < ApplicationController
     # @item = Item.find(@cart_items.item_id)
     # @items = @cart_items.item
     # アソシエーションで情報を取得する！view内で情報を持ってくるようにする！
+    # @cart_item = CartItem.find(params[:id])
 
   end
 
   def update
+    cart_item = CartItem.find(params[:id])
+    cart_item.update(cart_item_params)
+    redirect_to cart_items_path
+    # カート内商品一覧へリダイレクト
   end
 
   def reset
+    # カート内商品全消去
+    current_customer.cart_items.destroy_all
+    redirect_to cart_items_path
   end
 
   def destroy
+    # カート内一部商品削除
     cart_item = CartItem.find(params[:id])
     cart_item.destroy
     redirect_to cart_items_path
