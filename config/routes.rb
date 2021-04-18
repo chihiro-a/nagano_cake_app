@@ -41,8 +41,8 @@ Rails.application.routes.draw do
   # 退会処理実行
 
   get "/cart_items" => "public/cart_items#index"
-  patch "/cart_items/:id" => "public/cart_items#update"
-  delete "/cart_items/:id" => "public/cart_items#destroy"
+  patch "/cart_item/:id" => "public/cart_items#update"
+  delete "/cart_item/:id" => "public/cart_items#destroy"
   delete "/cart_items" => "public/cart_items#reset"
   post "/cart_items" => "public/cart_items#create"
 

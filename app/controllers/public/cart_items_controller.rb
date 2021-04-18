@@ -8,8 +8,10 @@ class Public::CartItemsController < ApplicationController
   end
 
   def index
-    # @cart_items = CartItem(current_cart_item.id)
-    # どうやって今のカート内データのみ取得する？
+    @cart_items = CartItem.all
+    # @item = Item.find(@cart_items.item_id)
+    # @items = @cart_items.item
+    # アソシエーションで情報を取得する！view内で情報を持ってくるようにする！
 
   end
 
@@ -20,6 +22,10 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
+    cart_item = CartItem.find(params[:id])
+    cart_item.destroy
+    redirect_to cart_items_path
+    # カート内商品一覧へリダイレクト
   end
 
 
