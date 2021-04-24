@@ -32,7 +32,7 @@
       <td><%= cart_item.item.price * cart_item.amount %></td>
     </div>
     <div>
-      <td><%= link_to "削除する" , "/cart_item/#{cart_item.id}",method: :delete %></td>
+      <td><%= link_to "削除する" , "/cart_item/#{cart_item.id}",class:"btn btn-success" %></td>
     </div>
   </tr>
   <% end %>

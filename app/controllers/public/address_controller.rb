@@ -11,6 +11,23 @@ class Public::AddressController < ApplicationController
     redirect_to address_path
     # 一覧へリダイレクト
   end
+  
+  def edit
+    @address = Address.find(params[:id])
+  end
+
+  def update
+    @address = Address.find(params[:id])
+    @address.update(address_params)
+    redirect_to address_path
+    # 一覧へリダイレクト
+  end
+
+  def destroy
+    @address = Address.find(params[:id])
+    @address.destroy
+    redirect_to address_path
+  end
 
   private
   def address_params

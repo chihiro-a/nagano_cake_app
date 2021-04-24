@@ -13,12 +13,15 @@
     <th>郵便番号</th>
     <th>住所</th>
     <th>宛名</th>
+    <th></th>
   </tr>
   <% @addresses.each do |address|%>
   <tr>
     <th><%= address.postal_code %></th>
     <th><%= address.address %></th>
     <th><%= address.name %></th>
+    <th><%= link_to "編集する" ,"/address/#{address.id}/edit" ,class:"btn btn-success" %>
+        <%= link_to "削除する" ,"/address/#{address.id}" ,method: :delete , class:"btn btn-danger"%></th>
   </tr>
   <% end %>
 </table>
