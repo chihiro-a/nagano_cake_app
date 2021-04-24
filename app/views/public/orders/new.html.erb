@@ -1,8 +1,33 @@
-注文情報詳細入力
+注文情報入力
 
-<%= form_with model: @order, url:order_path(@oeder.id), local:true do |f| %>
-<h3>支払方法</h3>
-<p>enumでなんかやる</p>
-<h3>お届け先</h3>
+<%= form_with model: @order, url:orders_confirm_path,local:true do |f| %>
+  <h4>支払い方法</h4>
+  <%= f.label :status, 'クレジット', value: 0 , checked: true %>
+  <%= f.radio_button :payment_method, "credit" %>
+  <%= f.label :status, '銀行振り込み', value: 1 %>
+  <%= f.radio_button :payment_method, "bank" %>
+  <!--チェック済みにならない！！-->
+  <h4>お届け先</h4>
+  <div>
+    <%= radio_button_tag '@r1' , "first" %>
+    <!--%= f.label :address, 'ご自身の住所', value: 0 , checked: true %>-->
+    <!--%= radio_button_tag :shipping_status, '0' %>-->
+    <!--ラジオボタンタグを使う！-->
+    <div>
+      〒<%= @customer.postal_code %>
+      <%= @customer.address %>
+    </div>
+    <div>
+      <%= @customer.last_name %><%= @customer.first_name %>
+    </div>
+  </div>
+  <div>
 
+     <%= radio_button_tag '@r1', "second" %>
+     <!--%= radio_button_tag :shipping_status, '1' %>-->
+     <div>郵便番号（ハイフンなし）<%= f.text_field :postal_code %></div>
+     <div>住所<%= f.text_field :address %></div>
+     <div>宛名<%= f.text_field :name %></div>
+  </div>
+  <%= f.submit '確認画面へ進む'  %>
 <% end %>

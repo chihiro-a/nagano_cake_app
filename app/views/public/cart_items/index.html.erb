@@ -16,7 +16,7 @@
       <td><%= attachment_image_tag cart_item.item,:image, :fill, 100, 100, format: 'jpeg' %><%= cart_item.item.name %></tb>
     </div>
     <div>
-      <td><%= cart_item.item.price %></td>
+      <td><%= cart_item.item.price + cart_item.item.price * 0.1 %></td>
     </div>
     <div>
       <td>
@@ -38,5 +38,11 @@
   <% end %>
 </table>
 
-<%= link_to "買い物を続ける" , public_items_path , class:"btn btn-success" %>
-<p>情報入力に進む</p>
+<div><%= link_to "買い物を続ける" , public_items_path , class:"btn btn-success" %></div>
+
+<!--%= form_with model: @order_detail, local:true do |f| %>-->
+<!--%= f.select :amount, [['1',1], ['2',2],], {include_blank: '個数選択'}, class: 'amount' %>-->
+<!--%= f.hidden_field :item_id, value: @item.id %>-->
+<!--%= f.submit"カートに入れる" %>-->
+<!--% end %>-->
+<div><%= link_to "注文情報入力へ進む" , orders_new_path , class:"btn btn-danger" %></div>

@@ -10,7 +10,7 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.save
-    redirect_to admin_item_path(@item.id)
+    redirect_to public_items_path
     # 商品詳細へリダイレクトができなくなってる…
   end
 

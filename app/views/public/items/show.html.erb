@@ -7,7 +7,7 @@
     <%= @item.name %>
 </div>
 <div>
-    ¥<%= @price.floor %>（税込）
+    ¥<%= number_to_currency(@price) %>（税込）
 </div>
 
 <div>

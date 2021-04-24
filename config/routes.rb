@@ -47,11 +47,17 @@ Rails.application.routes.draw do
   post "/cart_items" => "public/cart_items#create"
 
   get "/orders/new" => "public/orders#new"
-  post "/orders/comfirm" => "public/orders#comfirm"
+  post "/orders/confirm" => "public/orders#confirm"
   get "orders/thanks" => "public/orders#thanks"
-  post "/oeders" => "public/oeders#create"
+  post "/orders" => "public/orders#create"
   get "/orders" => "public/orders#index"
-  get "/oeders/:id" => "public/oeders#show"
+  get "/oeders/:id" => "public/orders#show"
+
+  get "/address" => "public/address#index"
+  patch "/address/:id/edit" => "public/address#edit"
+  post "/address/new" => "public/address#create"
+  patch "/address" => "public/address#update"
+  delete "/address/:id" => "public/address#destroy"
 
 
 end

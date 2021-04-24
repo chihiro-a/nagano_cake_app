@@ -9,19 +9,14 @@
   <h4>商品説明</h4>
   <%= f.text_area :introduction %>
   <h4>ジャンル</h4>
-  <%= f.select :genre_id, [['ケーキ',1], ['プリン',2],], {include_blank: '--選択してください--'}, class: 'sample' %>
+  <%= f.select :genre_id, [['ケーキ',1], ['プリン',2],],{include_blank: '--選択してください--'}, class: 'sample' %>
   <h4>税抜価格</h4>
   <%= f.text_field :price %>
   <h4>販売ステータス</h4>
-
-
   <%= f.label :status, '販売中', value: true %>
   <%= f.radio_button :is_active, 'true' %>
   <%= f.label :status, '販売停止中', value: false %>
   <%= f.radio_button :is_active, 'false' %>
-
-
-
 
   <%= f.submit '新規登録'  %>
 <% end %>

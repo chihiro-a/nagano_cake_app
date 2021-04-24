@@ -9,6 +9,7 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @cart_items = CartItem.all
+    # @order_ditails = OrderDetail.new
     # @item = Item.find(@cart_items.item_id)
     # @items = @cart_items.item
     # アソシエーションで情報を取得する！view内で情報を持ってくるようにする！
