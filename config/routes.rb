@@ -19,17 +19,18 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
   end
-  namespace :public do
-    get "/" => "homes#top"
-    get "/about" => "homes#about"
+  # namespace :public do
+    # get "/" => "homes#top"
+    # get "/about" => "homes#about"
     # アバウトページ表示できない…
-    resources :customers, only: [:show, :edit, :update,]
-    get "/unsubscribe" => "customers#unsubscribe"
-    patch "/customers" => "customers#withdraw"
-    resources :items, only: [:index, :show]
-  end
+    # resources :customers, only: [:show, :edit, :update,]
+    # get "/unsubscribe" => "customers#unsubscribe"
+    # patch "/customers" => "customers#withdraw"
+    # resources :items, only: [:index, :show]
+  # end
 
-  get "/" => "public/homes#top"
+  root to: "public/homes#top"
+
   get "/about" => "public/homes#about"
   get "/customers" => "public/customers#show"
   get "/customers/edit" => "public/customers#edit"
@@ -39,6 +40,9 @@ Rails.application.routes.draw do
   # 退会臥煙の表示
   patch "customers/withdraw" => "public/customers/withdraw"
   # 退会処理実行
+  
+  get "/items" => "public/items#index"
+  get "/items/:id" => "public/items#show"
 
   get "/cart_items" => "public/cart_items#index"
   patch "/cart_item/:id" => "public/cart_items#update"
@@ -51,7 +55,7 @@ Rails.application.routes.draw do
   get "orders/thanks" => "public/orders#thanks"
   post "/orders" => "public/orders#create"
   get "/orders" => "public/orders#index"
-  get "/oeders/:id" => "public/orders#show"
+  get "/orders/:id" => "public/orders#show"
 
   get "/address" => "public/address#index"
   get "/address/:id/edit" => "public/address#edit"

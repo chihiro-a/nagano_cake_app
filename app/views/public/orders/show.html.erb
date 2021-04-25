@@ -1,1 +1,48 @@
-注文履歴詳細画面
+注文履歴詳細
+<h5>注文情報</h5>
+<table>
+    <tr>
+        <th>注文日<td><%= @order.created_at %></td></th>
+    </tr>
+    <tr>
+        <th>配送先<td><%= @order.postal_code%></br>
+        <%= @order.address %></br>
+        <%= @order.name %></td></th>
+    </tr>
+    <tr>
+        <th>支払方法<td><%= @order.payment_method %></td></th>
+    </tr>
+    <tr>
+        <th>ステータス<td><%= @order.status %></td></th>
+    </tr>
+</table>
+<h5>注文内容</h5>
+<table>
+    <tr>
+        <th>商品</th>
+        <th>単価（税込）</th>
+        <th>個数</th>
+        <th>小計</th>
+    </tr>
+    <% @order_details.each do |order_detail| %>
+    <tr>
+        <td><%= order_detail.item.name %></td>
+        <td><%= order_detail.item.price %></td>
+        <td><%= order_detail.amount %></td>
+        <td><%= (order_detail.item.price * order_detail.amount).round %></td>
+    </tr>
+    <% end %>
+</table>
+
+<h5>請求情報</h5>
+<table>
+    <tr>
+        <th>商品合計<td>合計金額</td></th>
+    </tr>
+    <tr>
+        <th>送料<td><%= @order.shipping_cost %></td></th>
+    </tr>
+    <tr>
+         <th>請求合計<td>合計金額＋送料</td></th>
+    </tr>
+</table>

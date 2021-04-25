@@ -1,6 +1,6 @@
 class Public::CustomersController < ApplicationController
     def show
-      @customer = Customer.find(current_customer.id)
+      @customer = current_customer
     end
 
     def edit
@@ -10,7 +10,7 @@ class Public::CustomersController < ApplicationController
     def update
       @customer = Customer.find(current_customer.id)
       @customer.update(customer_params)
-      redirect_to customers_path(current_customer.id)
+      redirect_to customers_path
       # ユーザ情報詳細へリダイレクト
     end
 
@@ -24,7 +24,7 @@ class Public::CustomersController < ApplicationController
 
     private
     def customer_params
-      params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :telephone_number, :adress)
+      params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :telephone_number, :address)
     end
 
 end

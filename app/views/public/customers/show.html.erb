@@ -12,14 +12,14 @@
   </tr>
   <tr>
     <th><%= @customer.last_name %><%= @customer.first_name %></th>
-    <th><%= @customer.first_name_kana %><%= @customer.first_name_kana %></th>
+    <th><%= @customer.last_name_kana %><%= @customer.first_name_kana %></th>
     <th><%= @customer.postal_code %></th>
-    <th><%= @customer.adress %></th>
+    <th><%= @customer.address %></th>
     <th><%= @customer.telephone_number %></th>
     <th><%= @customer.email %></th>
   </tr>
 </table>
 <p>配送先</p>
-<p>一覧をみる(ボタン)</p>
+<p><%= link_to "一覧を見る" ,address_path , class:"btn btn-success" %></p>
 <p>注文履歴</p>
-<p>一覧を見る（ボタン）</p>
+<p><%= link_to"一覧を見る" ,"/orders" , class:"btn btn-success"%></p>
