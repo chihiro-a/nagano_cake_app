@@ -9,7 +9,7 @@
   <tr>
     <% @customers.each do |customer| %>
     <td><%= customer.id %></td>
-    <td><%= link_to "#{customer.last_name}#{customer.first_name}",admin_customer_path(1) %></td>
+    <td><%= link_to "#{customer.last_name}#{customer.first_name}",admin_customer_path(customer.id) %></td>
     <td><%= customer.email %></td>
     <td><%= if customer.is_active == true
             "有効"
@@ -19,4 +19,5 @@
     <% end %>
   </tr>
 </table>
+<%= paginate @customers %>
 

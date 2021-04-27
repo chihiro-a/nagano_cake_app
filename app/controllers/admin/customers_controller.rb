@@ -1,6 +1,6 @@
 class Admin::CustomersController < ApplicationController
   def index
-    @customers = Customer.all
+    @customers = Customer.page(params[:page]).per(10)
   end
 
   def show
@@ -16,6 +16,11 @@ class Admin::CustomersController < ApplicationController
     @customer.update(customer_params)
     redirect_to admin_customer_path(@customer.id)
     #会員情報詳細へリダイレクト
+  end
+
+  def order
+    customer = Customer.find(params[:id])
+    @orders = customer.orders
   end
 
   private

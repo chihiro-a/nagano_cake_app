@@ -1,4 +1,4 @@
-会員情報編集画面
+<%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集
 
 <%= form_with model: @customer, url:admin_customer_path(@customer.id), local:true do |f| %>
 <table>
@@ -20,7 +20,7 @@
   </tr>
   <tr>
     <td>住所</td>
-    <td><%= f.text_field :adress %></td>
+    <td><%= f.text_field :address %></td>
   </tr>
   <tr>
     <td>電話番号</td>

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
   end
+
   # namespace :public do
     # get "/" => "homes#top"
     # get "/about" => "homes#about"
@@ -29,6 +30,8 @@ Rails.application.routes.draw do
     # resources :items, only: [:index, :show]
   # end
 
+  get "/admin/customer/:id/orders" => "admin/customers#order"
+
   root to: "public/homes#top"
 
   get "/about" => "public/homes#about"
@@ -38,9 +41,10 @@ Rails.application.routes.draw do
   patch "/customers" => "public/customers#update"
   get "/customers/delete" => "public/customers#unsubscribe"
   # 退会臥煙の表示
-  patch "customers/withdraw" => "public/customers/withdraw"
+  patch "/customers/withdraw" => "public/customers/withdraw"
   # 退会処理実行
-  
+
+
   get "/items" => "public/items#index"
   get "/items/:id" => "public/items#show"
 

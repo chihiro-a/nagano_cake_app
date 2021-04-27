@@ -1,8 +1,9 @@
 顧客からみた商品一覧画面
-<h3>商品一覧（全<%= "#{@items.count}"%>件）</h3>
+<h3>商品一覧（全<%= "#{@count.count}"%>件）</h3>
 <% @items.each do |item| %>
 <div><%= attachment_image_tag item,:image, :fill, 100, 100, format: 'jpeg' %></div>
 <div><%= item.name %></div>
 <div><%= item.price %></div>
 <div><%= link_to "商品詳細" , "/items/#{item.id}" %></div>
 <% end %>
+<%= paginate @items %>

@@ -1,5 +1,5 @@
 class Admin::HomesController < ApplicationController
   def index
-    @orders = OrderDetail.all
+    @orders = Order.all
   end
 end

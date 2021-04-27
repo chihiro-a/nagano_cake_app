@@ -8,18 +8,13 @@
     <th>注文個数</th>
     <th>注文ステータス</th>
   </tr>
+  <% @orders.each do |order|%>
   <tr>
-    <td>買った日</td>
-    <td>山田さん</td>
-    <td>４</td>
-    <td>入金待ち</td>
+    <td><%= order.created_at %></td>
+    <td><%= order.customer.name %></td>
+    <% order.order_details.each do ||%>
+    <td><%= count(order.order_details.amount) %></td>
+    <td><%= order.status %></td>
   </tr>
-  <!--<tr>-->
-    <!--% @orders.each do |order| %>-->
-    <!--<td>order.created_at </td>-->
-    <!--<td>order.customer.name </td>-->
-    <!--これで注文者名でる？？-->
-    <!--<td>order.amount </td>-->
-    <!--<td>order.making_status </td>-->
-  <!--</tr>-->
+  <% end %>
 </table>
