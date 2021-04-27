@@ -1,10 +1,14 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_admin!,except: [:top, :about]
+
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_customer_sign_in_path_for(resource)
-    cart_items_path
+    cart_items_path(current_user.id)
     # ログイン後の遷移先が変わらない…
   end
+
+
 
 
   protected

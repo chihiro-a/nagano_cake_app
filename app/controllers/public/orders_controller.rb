@@ -34,6 +34,8 @@ class Public::OrdersController < ApplicationController
       @order_detail.save
     end
 
+    current_customer.cart_items.destroy_all
+
 
     # order_detail = OrderDetail.new(order_id: @order.id, item_id: customer.cart_item.item_id, amount: customer.cart_item.amount)
 
