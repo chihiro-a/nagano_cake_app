@@ -4,6 +4,7 @@
     <title>NaganoCake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -11,36 +12,45 @@
 
   <body>
     <header>
-      <div class="header">
-        <div>LOGO</div>
-        <% if customer_signed_in? %>
-        <div>
-          <ul>
-            <li>ようこそ、さん！</li>
-            <li><%= link_to "マイページ" ,customers_path %></li>
-            <li><%= link_to "商品一覧", items_path  %></li>
-            <li><%= link_to "カート", cart_items_path %></li>
-            <li><%= link_to "ログアウト" ,destroy_customer_session_path, method: :delete %></li>
-          </ul>
-          <% elsif admin_signed_in? %>
-            <ul>
-            <li><%= link_to "商品一覧", admin_items_path %></li>
-            <li><%= link_to "会員一覧", admin_customers_path %></li>
-            <li><%= link_to "注文履歴一覧", new_customer_registration_path %></li>
-            <li><%= link_to "ジャンル一覧", admin_genres_path %></li>
-            <li><%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete %></li>
-          </ul>
-          <% else %>
-          <ul>
-            <li>About</li>
-            <li><%= link_to "商品一覧", "/public/items" %></li>
-            <li><%= link_to "新規登録", new_customer_registration_path %></li>
-            <li><%= link_to "ログイン", new_customer_session_path %></li>
-          </ul>
-          <% end %>
+      <div class="header h-20 border-bottom border-dark">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container">
+            <p class="border border-dark d-flex align-items-center">　LOGO　</p>
+
+            <% if customer_signed_in? %>
+
+            <div>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item d-flex align-items-center">ようこそ、<%= current_customer.last_name %>さん！</li>
+                <li class="nav-item m-3"><%= link_to "マイページ" ,customers_path ,class:"btn btn-outline-secondary"%></li>
+                <li class="nav-item m-3"><%= link_to "商品一覧", items_path ,class:"btn btn-outline-secondary" %></li>
+                <li class="nav-item m-3"><%= link_to "カート", cart_items_path ,class:"btn btn-outline-secondary"%></li>
+                <li class="nav-item m-3"><%= link_to "ログアウト" ,destroy_customer_session_path, method: :delete ,class:"btn btn-outline-secondary"%></li>
+              </ul>
+            <% elsif admin_signed_in? %>
+              <ul>
+                <li class="nav-item m-3"><%= link_to "商品一覧", admin_items_path ,class:"btn btn-outline-secondary"%></li>
+                <li class="nav-item m-3"><%= link_to "会員一覧", admin_customers_path ,class:"btn btn-outline-secondary"%></li>
+                <li class="nav-item m-3"><%= link_to "注文履歴一覧", new_customer_registration_path ,class:"btn btn-outline-secondary"%></li>
+                <li class="nav-item m-3"><%= link_to "ジャンル一覧", admin_genres_path ,class:"btn btn-outline-secondary"%></li>
+                <li class="nav-item m-3"><%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete ,class:"btn btn-outline-secondary"%></li>
+              </ul>
+            <% else %>
+              <ul>
+                <li class="nav-item m-3">About</li>
+                <li class="nav-item m-3"><%= link_to "商品一覧", "/public/items" ,class:"btn btn-outline-secondary" %></li>
+                <li class="nav-item m-3"><%= link_to "新規登録", new_customer_registration_path ,class:"btn btn-outline-secondary" %></li>
+                <li class="nav-item m-3"><%= link_to "ログイン", new_customer_session_path ,class:"btn btn-outline-secondary" %></li>
+              </ul>
+            <% end %>
+          </div>
+          </div>
+        </nav>
         </div>
-      </div>
     </header>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
+
   </body>
 </html>
