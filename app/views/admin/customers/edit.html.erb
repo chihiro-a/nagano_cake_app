@@ -1,3 +1,6 @@
+管理者画面のユーザ情報編集ページ
+
+
 <%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集
 
 <%= form_with model: @customer, url:admin_customer_path(@customer.id), local:true do |f| %>

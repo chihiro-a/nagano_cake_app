@@ -36,12 +36,12 @@ Rails.application.routes.draw do
 
   get "/about" => "public/homes#about"
   get "/customers" => "public/customers#show"
-  get "/customers/edit" => "public/customers#edit"
+  # get "/customers/edit" => "public/customers#edit"
   # deviseで作成したルーティングと被っている…deviseで作成したルーティングを削除したい
   patch "/customers" => "public/customers#update"
   get "/customers/delete" => "public/customers#unsubscribe"
   # 退会臥煙の表示
-  patch "/customers/withdraw" => "public/customers/withdraw"
+  patch "/customers/withdraw" => "public/customers#withdraw"
   # 退会処理実行
 
 

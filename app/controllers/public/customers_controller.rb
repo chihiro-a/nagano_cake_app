@@ -21,7 +21,7 @@ class Public::CustomersController < ApplicationController
     def withdraw
       # is_activeをfalseにする処理
       @customer = Customer.find(current_customer.id)
-      @customer.update(customer_params)
+      @customer.is_active = false
       @customer.save
       redirect_to root_path
     end

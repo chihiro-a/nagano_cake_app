@@ -1,6 +1,6 @@
 マイページ
 <h5>登録情報</h5>
-<p><%= link_to "編集する", customers_edit_path(current_customer.id) %></p>
+<p><%= link_to "編集する", edit_customer_registration_path, class:"btn btn-success" %></p>
 <table>
   <tr>
     <th>名前</th>
@@ -19,7 +19,9 @@
     <th><%= @customer.email %></th>
   </tr>
 </table>
-<p>配送先</p>
-<p><%= link_to "一覧を見る" ,address_path , class:"btn btn-success" %></p>
-<p>注文履歴</p>
-<p><%= link_to"一覧を見る" ,"/orders" , class:"btn btn-success"%></p>
+<div>
+  配送先<%= link_to "一覧を見る" ,address_path , class:"btn btn-primary" %>
+</div>
+<div>
+  注文履歴<%= link_to"一覧を見る" ,"/orders" , class:"btn btn-primary"%>
+</div>
