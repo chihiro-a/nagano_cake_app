@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     # resources :items, only: [:index, :show]
   # end
 
-  get "/admin/customer/:id/orders" => "admin/customers#order"
+  get "/admin/customers/:id/orders" => "admin/customers#order"
 
   root to: "public/homes#top"
 

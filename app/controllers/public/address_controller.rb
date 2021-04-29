@@ -1,4 +1,8 @@
 class Public::AddressController < ApplicationController
+
+  before_action :authenticate_customer!, [:index,:edit]
+  # ログインしていない場合アクセス不可
+
   def index
     @address = Address.new
     @addresses = Address.all
@@ -11,7 +15,7 @@ class Public::AddressController < ApplicationController
     redirect_to address_path
     # 一覧へリダイレクト
   end
-  
+
   def edit
     @address = Address.find(params[:id])
   end

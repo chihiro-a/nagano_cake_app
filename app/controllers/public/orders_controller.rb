@@ -1,4 +1,7 @@
 class Public::OrdersController < ApplicationController
+
+  before_action :authenticate_customer!, [:new,:index,:show]
+
   def new
     @order = Order.new
     @customer = current_customer
@@ -52,6 +55,7 @@ class Public::OrdersController < ApplicationController
     end
 
     current_customer.cart_items.destroy_all
+    # カート内を空にする
 
 
     # order_detail = OrderDetail.new(order_id: @order.id, item_id: customer.cart_item.item_id, amount: customer.cart_item.amount)

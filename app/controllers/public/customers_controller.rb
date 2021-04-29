@@ -1,18 +1,21 @@
 class Public::CustomersController < ApplicationController
+
+    before_action :authenticate_customer!, [:show,:unsubscribe]
+
     def show
       @customer = current_customer
     end
 
-    def edit
-      @customer = Customer.find(current_customer.id)
-    end
+    # 編集はregisutrationで司っている！↓
+    # def edit
+      # @customer = Customer.find(current_customer.id)
+    # end
 
-    def update
-      @customer = Customer.find(current_customer.id)
-      @customer.update(customer_params)
-      redirect_to customers_path
-      # ユーザ情報詳細へリダイレクト
-    end
+    # def update
+      # @customer = Customer.find(current_customer.id)
+      # @customer.update(customer_params)
+# /      redirect_to customers_path
+    # end
 
     def unsubscribe
       @customer = Customer.find(current_customer.id)

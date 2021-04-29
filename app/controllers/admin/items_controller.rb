@@ -1,4 +1,8 @@
 class Admin::ItemsController < ApplicationController
+
+  before_action :authenticate_admin!, [:index,:show,:edit,:new]
+  # ログインしていない場合アクセス不可
+
   def index
     @items = Item.all
   end

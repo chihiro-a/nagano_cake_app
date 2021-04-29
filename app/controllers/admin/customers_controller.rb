@@ -1,4 +1,7 @@
 class Admin::CustomersController < ApplicationController
+  before_action :authenticate_admin!, [:index,:show,:edit,:order]
+  # ログインしていない場合アクセス不可
+
   def index
     @customers = Customer.page(params[:page]).per(10)
   end
@@ -15,7 +18,6 @@ class Admin::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     @customer.update(customer_params)
     redirect_to admin_customer_path(@customer.id)
-    #会員情報詳細へリダイレクト
   end
 
   def order
@@ -25,6 +27,7 @@ class Admin::CustomersController < ApplicationController
 
   private
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :telephone_number, :adress, :is_active, :email)
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :telephone_number, :address, :is_active, :email)
   end
+
 end

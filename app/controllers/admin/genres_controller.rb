@@ -1,4 +1,7 @@
 class Admin::GenresController < ApplicationController
+  before_action :authenticate_admin!, [:index,:edit]
+  # ログインしていない場合アクセス不可
+
   def index
     @genres = Genre.all
     @genre = Genre.new

@@ -11,9 +11,8 @@
   <% @orders.each do |order|%>
   <tr>
     <td><%= order.created_at %></td>
-    <td><%= order.customer.name %></td>
-    <% order.order_details.each do ||%>
-    <td><%= count(order.order_details.amount) %></td>
+    <td><%= order.name %></td>
+    <td><%= order.order_details.all.sum(:amount) %></td>
     <td><%= order.status %></td>
   </tr>
   <% end %>
