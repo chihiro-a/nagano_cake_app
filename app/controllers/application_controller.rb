@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     if resource.kind_of?(Customer)
       root_path
     elsif resource.kind_of?(Admin)
-      admin_customers_path
+      admin_path
       # ひとまず管理者ログイン後は顧客一覧を表示。あとで注文一覧に変更する！
     end
   end
