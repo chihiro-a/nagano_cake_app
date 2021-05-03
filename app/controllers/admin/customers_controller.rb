@@ -1,5 +1,5 @@
 class Admin::CustomersController < ApplicationController
-  before_action :authenticate_admin!, [:index,:show,:edit,:order]
+  before_action :authenticate_admin!, only: [:index,:show,:edit,:order]
   # ログインしていない場合アクセス不可
 
   def index

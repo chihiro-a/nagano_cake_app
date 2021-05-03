@@ -48,6 +48,15 @@
         </nav>
         </div>
     </header>
+
+    <% if flash[:error] %>
+    <div class="flash">
+      <%= flash[:error] %>
+    </div>
+    <% end %>
+    
+    <%= flash[:error] %>
+
     <div class="container">
       <%= yield %>
     </div>

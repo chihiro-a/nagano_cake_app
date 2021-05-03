@@ -1,5 +1,5 @@
 class Admin::GenresController < ApplicationController
-  before_action :authenticate_admin!, [:index,:edit]
+  before_action :authenticate_admin!, only: [:index,:edit]
   # ログインしていない場合アクセス不可
 
   def index

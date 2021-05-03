@@ -1,6 +1,6 @@
 class Public::CartItemsController < ApplicationController
 
-  before_action :authenticate_customer!,only: [:index]
+  before_action :authenticate_customer!,only: [:index, :create]
   # ログインしていない場合アクセス不可
   def create
     cart_item = CartItem.new(cart_item_params)

@@ -32,7 +32,6 @@ class Public::OrdersController < ApplicationController
       @order.postal_code = @order_address.postal_code
       @order.name = @order_address.name
       # @order = Order.new(name:@address.name(params[:id]), address: @address.address(params[:id]), postal_code: @address.postal_code(params[:id]))
-
     else
       # 新しいお届け先
       puts 2
@@ -41,13 +40,37 @@ class Public::OrdersController < ApplicationController
 
       # @order = Order.new(name:@address.name(params[:id]), address: @address.address(params[:id]), postal_code: @address.postal_code(params[:id]))
     end
+
+        # 税込合計金額を出すための処理↓
+    cart_items = current_customer.cart_items
+    total_prices = 0
+    cart_items.each do |cart_item|
+      item_price = cart_item.item.price
+      amount = cart_item.amount
+      total_prices += item_price * amount
+    end
+    @price = ((total_prices * 1.1).round)
+    # ここまで↑
+
+    @total_payment = @price + 800
+
   end
 
   def create
     @order = Order.new(order_params)
     @order.shipping_cost = 800
     @order.customer_id = current_customer.id
+
+    total_prices = 0
+    current_customer.cart_items.each do |cart_item|
+      item_price = cart_item.item.price
+      amount = cart_item.amount
+      total_prices += item_price * amount
+    end
+    price = (total_prices * 1.1).round
+    @order.total_payment = price + @order.shipping_cost
     @order.save
+
 
     cart_items = current_customer.cart_items
     cart_items.each do |cart_item|
