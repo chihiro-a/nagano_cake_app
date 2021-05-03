@@ -1,24 +1,32 @@
 class Public::OrdersController < ApplicationController
 
-  before_action :authenticate_customer!, [:new,:index,:show]
+  before_action :authenticate_customer!, only: [:new,:index,:show]
 
   def new
     @order = Order.new
     @customer = current_customer
     @addresses = @customer.addresses
+
   end
 
   def confirm
+    # binding.pry
     @customer = current_customer
     @order = Order.new(order_params)
     @address = @customer.addresses
     # なんでここtでOrder.newしないといけない？？
     # order_paramsを追加したら支払い情報が確認画面に表示されるようになった！
     if params[:@r1] == "first"
-      puts 0
-      @order = Order.new(name:"#{@customer.last_name}#{@customer.first_name}", address: @customer.address, postal_code: @customer.postal_code)
+      # ご自身の住所
+      puts 1
+      # @order = Order.new(name:"#{@customer.last_name}#{@customer.first_name}", address: @customer.address, postal_code: @customer.postal_code)
+      @order.name = "#{@customer.last_name}#{@customer.first_name}"
+      @order.address = @customer.address
+      @order.postal_code = @customer.postal_code
     elsif params[:@r1] == "third"
-      @order_number = params[:order][:name]
+      # 登録済み住所から選択
+      puts 3
+      @order_number = params[:order][:index]
       @order_address = Address.find(@order_number)
       @order.address = @order_address.address
       @order.postal_code = @order_address.postal_code
@@ -26,14 +34,11 @@ class Public::OrdersController < ApplicationController
       # @order = Order.new(name:@address.name(params[:id]), address: @address.address(params[:id]), postal_code: @address.postal_code(params[:id]))
 
     else
-      puts 1
-      @order = Order.new(order_params)
+      # 新しいお届け先
+      puts 2
+      # @order = Order.new(order_params)
+      # 一番最初にOrder.newしているからここではいらない
 
-      @order_number = params[:order][:name]
-      @order_address = Address.find(@order_number)
-      @order.address = @order_address.address
-      @order.postal_code = @order_address.postal_code
-      @order.name = @order_address.name
       # @order = Order.new(name:@address.name(params[:id]), address: @address.address(params[:id]), postal_code: @address.postal_code(params[:id]))
     end
   end

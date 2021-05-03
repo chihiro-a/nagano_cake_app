@@ -1,6 +1,6 @@
 class Public::CustomersController < ApplicationController
 
-    before_action :authenticate_customer!, [:show,:unsubscribe]
+    before_action :authenticate_customer!, only: [:show,:unsubscribe]
 
     def show
       @customer = current_customer

@@ -1,6 +1,6 @@
 class Public::AddressController < ApplicationController
 
-  before_action :authenticate_customer!, [:index,:edit]
+  before_action :authenticate_customer!, only: [:index,:edit]
   # ログインしていない場合アクセス不可
 
   def index

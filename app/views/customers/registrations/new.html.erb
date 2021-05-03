@@ -1,5 +1,6 @@
 
-<h2>新規会員登録</h2>
+<span class="bg-secondary inline-block m-5">　新規会員登録　</span>
+
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "customers/shared/error_messages", resource: resource %>
@@ -41,15 +42,15 @@
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :password, "パスワード（６文字以上）" %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em><% @minimum_password_length %></em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, "パスワード（確認用）" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
@@ -58,5 +59,9 @@
   </div>
 <% end %>
 
-<h5>既に登録済みの方</h5>
-<%= link_to "こちら" ,  new_customer_session_path %>からログインしてください。
+<span class="bg-secondary inline-block ml-5">　既に登録済みの方　</span>
+<div class="ml-5 mt-2">
+  <%= link_to "こちら" ,  new_customer_session_path %>　からログインしてください。
+</div>
+
+

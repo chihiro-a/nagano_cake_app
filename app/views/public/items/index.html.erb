@@ -1,9 +1,28 @@
-顧客からみた商品一覧画面
-<h3>商品一覧（全<%= "#{@count.count}"%>件）</h3>
-<% @items.each do |item| %>
-<div><%= attachment_image_tag item,:image, :fill, 100, 100, format: 'jpeg' %></div>
-<div><%= item.name %></div>
-<div><%= item.price %></div>
-<div><%= link_to "商品詳細" , "/items/#{item.id}" %></div>
-<% end %>
-<%= paginate @items %>
+
+<div class="container">
+  <span class="h3">商品一覧</span><span class="h5">（全<%= "#{@count.count}"%>件）</span>
+</div>
+
+<div class="container">
+  <div class="row">
+    <% @items.each do |item| %>
+    <div class="col-3">
+      <%= link_to "/items/#{item.id}" , method: :get do %>
+      <%= attachment_image_tag item, :image, :fill, 150, 150, format: 'jpeg' %>
+      <% end %>
+      <div><%= item.name %></div>
+      <div>¥<%= item.price.to_s(:delimited) %></div>
+    </div>
+   <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 clearfix text-center mx-auto">
+      <p class="d-flex justify-content-center"><%= paginate @items %></p>
+        
+
+    </div>
+  </div>
+</div>

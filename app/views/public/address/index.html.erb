@@ -1,15 +1,14 @@
-<h3>配送先登録／一覧</h3>
+<p>配送先登録／一覧</p>
 <%= form_with model: @address, url:address_new_path,local:true do |f| %>
-<table>
-  <tr><th>郵便番号（ハイフンなし）</th><td><%= f.text_field :postal_code %></td></tr>
-  <tr><th>住所</th><td><%= f.text_area :address %></td></tr>
-  <tr><th>宛名</th><td><%= f.text_field :name %></td></tr>
+<table >
+  <tr ><th>郵便番号（ハイフンなし）</th><td><%= f.text_field :postal_code, placeholder:"0000000" %></td></tr>
+  <tr ><th>住所</th><td><%= f.text_area :address, placeholder:"東京都渋谷区代々木２−２−２" %></td></tr>
+  <tr ><th>宛名</th><td><%= f.text_field :name, placeholder:"山田花子" %><p class="text-right d-inline-block"><%= f.submit"新規登録" ,class:"btn btn-success" %></p></td></tr>
 </table>
-<%= f.submit"新規登録" ,class:"btn btn-success" %>
 <% end %>
 
-<table>
-  <tr>
+<table border="1" style="border-collapse: collapse">
+  <tr bgcolor="#f0f0f0">
     <th>郵便番号</th>
     <th>住所</th>
     <th>宛名</th>
@@ -20,7 +19,7 @@
     <th><%= address.postal_code %></th>
     <th><%= address.address %></th>
     <th><%= address.name %></th>
-    <th><%= link_to "編集する" ,"/address/#{address.id}/edit" ,class:"btn btn-success" %>
+    <th><p class="d-inline-block m-2"><%= link_to "編集する" ,"/address/#{address.id}/edit" ,class:"btn btn-success" %></p>
         <%= link_to "削除する" ,"/address/#{address.id}" ,method: :delete , class:"btn btn-danger"%></th>
   </tr>
   <% end %>

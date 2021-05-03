@@ -1,21 +1,28 @@
-<h1>カスタマー</h1>
+<p>会員情報編集</p>
+<table>
+  <%= form_with model: @customer, url:customers_path, local:true do |f| %>
+  <tr>
+    <th>氏名<td><%= f.text_field :last_name %>　<%= f.text_field :first_name %></td></th>
+  </tr>
+  <tr>
+    <th>フリガナ<td><%= f.text_field :last_name_kana %>　<%= f.text_field :first_name_kana %></td></th>
+  </tr>
+  <tr>
+    <th>郵便番号<td><%= f.text_field :postal_code %></td></th>
+  </tr>
+  <tr>
+    <th>住所<td><%= f.text_area :address %></td></th>
+  </tr>
+  <tr>
+    <th>電話番号<td><%= f.text_field :telephone_number %></td></th>
+  </tr>
+  <tr>
+    <th>メールアドレス<td> <%= f.text_field :email %></td></th>
+  </tr>
+  <tr>
+    <th><td><p class="d-inline-block mt-2 mr-5"><%= f.submit '　　編集内容を保存　　' ,class:"btn btn-success" %></p><p class="ml-5 d-inline-block"><%= link_to "退会する", customers_delete_path ,class:"btn btn-danger" %></p></td></th>
+  </tr>
+  <% end %>
+</table>
 
-ユーザ情報編集画面
-<h3>会員情報編集</h3>
-<%= form_with model: @customer, url:customers_path, local:true do |f| %>
-  <h4>氏名</h4>
-  <%= f.text_field :last_name %><%= f.text_field :first_name %>
-  <h4>フリガナ</h4>
-  <%= f.text_field :last_name_kana %><%= f.text_field :first_name_kana %>
-  <h4>郵便番号</h4>
-  <%= f.text_field :postal_code %>
-  <h4>住所</h4>
-  <%= f.text_field :address %>
-  <h4>電話番号</h4>
-  <%= f.text_field :telephone_number %>
-  <h4>メールアドレス</h4>
-  <%= f.text_field :email %>
 
-  <%= f.submit '編集内容を保存'  %>
-<% end %>
-<%= link_to "退会する", customers_delete_path ,class:"btn btn-danger" %>

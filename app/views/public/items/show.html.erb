@@ -1,20 +1,29 @@
 顧客から見た商品詳細画面
 
-<div>
-    <%= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg'%>
-</div>
-<div>
-    <%= @item.name %>
-</div>
-<div>
-    ¥<%= number_to_currency(@price) %>（税込）
-</div>
-
-<div>
-<%= form_with model: @cart_item, url:cart_items_path,local:true do |f| %>
-
-<%= f.select :amount, [['1',1], ['2',2],], {include_blank: '個数選択'}, class: 'amount' %>
-<%= f.hidden_field :item_id, value: @item.id %>
-<%= f.submit"カートに入れる" %>
-<% end %>
+<div class="container">
+    <div class="row">
+        <div class="col-5">
+            <div>
+            <%= attachment_image_tag @item, :image, :fill, 200, 200, format: 'jpeg'%>
+            </div>
+        </div>
+        <div class="col-7">
+            <div>
+                <p class="h3"><%= @item.name %></p>
+            </div>
+            <div>
+                <%= @item.introduction %>
+            </div>
+            <div>
+                <p class="mt-3">¥<%= number_to_currency(@price) %>（税込）</p>
+            </div>
+            <div>
+                <%= form_with model: @cart_item, url:cart_items_path,local:true do |f| %>
+                <%= f.select :amount, [['1',1], ['2',2],['3',3],['4',4],['5',5],['6',6],['7',7],['8',8],['9',9]], {include_blank: '個数選択'}, class: 'amount' %>
+                <%= f.hidden_field :item_id, value: @item.id %>
+                <%= f.submit"カートに入れる", class:"btn btn-success" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
 </div>

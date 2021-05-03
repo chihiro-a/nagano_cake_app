@@ -1,8 +1,8 @@
-注文履歴詳細
-<h5>注文情報</h5>
-<table>
+<p class="ml-5 mt-3"><span style="background-color:#e8e8e8">　注文履歴詳細　</span></p>
+<p>注文情報</p>
+<table border="1" style="border-collapse: collapse">
     <tr>
-        <th>注文日<td><%= @order.created_at %></td></th>
+        <th>注文日<td><%= @order.created_at.strftime("%Y/%m/%e") %></td></th>
     </tr>
     <tr>
         <th>配送先<td><%= @order.postal_code%></br>
@@ -17,7 +17,7 @@
     </tr>
 </table>
 <h5>注文内容</h5>
-<table>
+<table border="1" style="border-collapse: collapse">
     <tr>
         <th>商品</th>
         <th>単価（税込）</th>
@@ -35,7 +35,7 @@
 </table>
 
 <h5>請求情報</h5>
-<table>
+<table border="1" style="border-collapse: collapse">
     <tr>
         <th>商品合計<td>合計金額</td></th>
     </tr>

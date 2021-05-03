@@ -1,7 +1,20 @@
 カート内商品一覧
-<h3>ショッピングカート</h3>
-<p><%= link_to "カートを空にする" , "/cart_items" ,method: :delete %></p>
-<table>
+<div class="container">
+  <div class="row mx-auto">
+    <div class="col-md-5">
+      ショッピングカート
+    </div>
+    <% if @cart_items.blank? %>
+    <div>カート内に商品はありません</div>
+    <% else %>
+    <div class="col-md-7">
+      <%= link_to "カートを空にする" , "/cart_items" ,method: :delete ,class:"btn btn-danger" %>
+    </div>
+  </div>
+</div>
+
+
+<table border="1" style="border-collapse: collapse d-flex align-items-center justify-content-center">
   <tr>
     <th>商品名</th>
     <th>単価（税込）</th>
@@ -16,33 +29,42 @@
       <td><%= attachment_image_tag cart_item.item,:image, :fill, 100, 100, format: 'jpeg' %><%= cart_item.item.name %></tb>
     </div>
     <div>
-      <td><%= cart_item.item.price + cart_item.item.price * 0.1 %></td>
+      <td>¥<%= ((cart_item.item.price * 1.1).round).to_s(:delimited) %></td>
     </div>
     <div>
       <td>
       <%= form_with model: cart_item, url:"/cart_item/#{cart_item.id}",local:true do |f| %>
-      <%= f.select :amount, [['1',1], ['2',2],], class: 'sample' %>
+      <%= f.select :amount, [['1',1], ['2',2], ['3',3], ['4',4], ['5',5], ['6',6], ['7',7], ['8',8], ['9',9],], class: 'sample' %>
       <%= f.hidden_field :item_id, value: cart_item.item_id %>
-      <%= f.submit"変更" %>
+      <%= f.submit"変更" , class:"btn btn-success" %>
       <% end %>
       </td>
     </div>
 
+
     <div>
-      <td><%= cart_item.item.price * cart_item.amount %></td>
+      <td><%=  (((cart_item.item.price * 1.1).round)* cart_item.amount).to_s(:delimited)  %></td>
     </div>
     <div>
-      <td><%= link_to "削除する" , "/cart_item/#{cart_item.id}",method: :delete ,class:"btn btn-success" %></td>
+      <td><%= link_to "削除する" , "/cart_item/#{cart_item.id}",method: :delete ,class:"btn btn-danger" %></td>
     </div>
   </tr>
   <% end %>
 </table>
 
-<div><%= link_to "買い物を続ける" , items_path , class:"btn btn-success" %></div>
+<table border="1" style="border-collapse: collapse d-flex align-items-center justify-content-center">
+  <tr>
+    <th>合計金額<td><%= @price %></td></th>
+  </tr>
+</table>
+
+<% end %>
+
+<div><%= link_to "買い物を続ける" , items_path , class:"btn btn-primary" %></div>
 
 <!--%= form_with model: @order_detail, local:true do |f| %>-->
 <!--%= f.select :amount, [['1',1], ['2',2],], {include_blank: '個数選択'}, class: 'amount' %>-->
 <!--%= f.hidden_field :item_id, value: @item.id %>-->
 <!--%= f.submit"カートに入れる" %>-->
 <!--% end %>-->
-<div><%= link_to "注文情報入力へ進む" , orders_new_path , class:"btn btn-danger" %></div>
+<div><%= link_to "注文情報入力へ進む" , orders_new_path , class:"btn btn-success" %></div>
