@@ -21,8 +21,7 @@ class Admin::CustomersController < ApplicationController
   end
 
   def order
-    customer = Customer.find(params[:id])
-    @orders = customer.orders
+    @order = Order.find(params[:id])
   end
 
   private

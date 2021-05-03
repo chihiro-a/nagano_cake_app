@@ -17,7 +17,8 @@ Rails.application.routes.draw do
     # ここtopアクションにしたいらしい…
     resources :items, except: [:destroy]
     resources :genres, only: [:index, :create, :edit, :update]
-    resources :customers, only: [:index, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit]
+    get "/order/:id" => "customers#order" ,as: 'order'
   end
 
   # namespace :public do
