@@ -1,9 +1,9 @@
 class OrderDetail < ApplicationRecord
   enum making_status:{
-    cannnot_be_making: 0, #製造不可
-    waiting: 1, #製造待ち
-    making: 2, #製作中
-    completed: 3, #製作完了
+    "着手不可": 0, #製造不可
+    "製造待ち": 1, #製造待ち
+    "製作中": 2, #製作中
+    "制作完了": 3, #製作完了
   }
 
   belongs_to :item

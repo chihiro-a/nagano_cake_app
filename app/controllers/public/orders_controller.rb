@@ -66,8 +66,10 @@ class Public::OrdersController < ApplicationController
       item_price = cart_item.item.price
       amount = cart_item.amount
       total_prices += item_price * amount
+      # 税抜合計金額
     end
     price = (total_prices * 1.1).round
+    # 税込合計金額
     @order.total_payment = price + @order.shipping_cost
     @order.save
 
@@ -77,7 +79,8 @@ class Public::OrdersController < ApplicationController
       @order_detail = OrderDetail.new
       @order_detail.item_id = cart_item.item_id
       @order_detail.amount = cart_item.amount
-      @order_detail.price = cart_item.item.price
+      @order_detail.price = (cart_item.item.price * 1.1).round
+      # 税込金額！
       @order_detail.order_id = @order.id
       @order_detail.save
     end

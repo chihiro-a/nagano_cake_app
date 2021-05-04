@@ -5,5 +5,6 @@ class Admin::HomesController < ApplicationController
     @orders = Order.page(params[:page]).per(10)
     # order.id = order_detail.order_id
     # @order = Order.where(order.id)
+
   end
 end

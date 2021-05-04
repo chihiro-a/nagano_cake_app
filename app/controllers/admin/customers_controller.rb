@@ -22,6 +22,12 @@ class Admin::CustomersController < ApplicationController
 
   def order
     @order = Order.find(params[:id])
+    # 注文詳細画面
+  end
+
+  def orders
+    @customer = Customer.find(params[:id])
+    @orders = @customer.orders
   end
 
   private

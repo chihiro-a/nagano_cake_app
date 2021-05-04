@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit]
     get "/order/:id" => "customers#order" ,as: 'order'
+    # 注文内容詳細
+    patch "/orders/:id/edit" => "orders#update", as:"order_edit"
+    patch "/order_detail/:id" => "orders#making_status_update", as:"order_detail_edit"
+    get "/customers/:id/orders" => "customers#orders" ,as:"customer_orders"
   end
 
   # namespace :public do

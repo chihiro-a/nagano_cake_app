@@ -1,22 +1,24 @@
-会員一覧
+<p><span style="background-color:	#e8e8e8">　会員一覧　</span></p>
 <table>
-  <tr>
+  <tr bgcolor="#e8e8e8">
     <th>会員ID</th>
     <th>氏名</th>
     <th>メールアドレス</th>
     <th>ステータス</th>
   </tr>
   <% @customers.each do |customer| %>
-  <tr>
-    <td><%= customer.id %></td>
-    <td><%= link_to "#{customer.last_name}#{customer.first_name}",admin_customer_path(customer.id) %></td>
-    <td><%= customer.email %></td>
-    <td><%= if customer.is_active == true
-            "有効"
-            else
-            "退会"
-            end %></td>
-  </tr>
+    <tr>
+      <td><%= customer.id %></td>
+      <td><%= link_to "#{customer.last_name}#{customer.first_name}",admin_customer_path(customer.id) %></td>
+      <td><%= customer.email %></td>
+      <td>
+        <% if customer.is_active == true %>
+          <p class="text-success">有効</p>
+        <% else %>
+          <p class="text-secondary">退会</p>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
 </table>
 <%= paginate @customers %>
