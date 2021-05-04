@@ -1,23 +1,26 @@
 商品一覧画面
-<table>
-  <tr>
-    <th>商品ID</th>
-    <th>商品名</th>
-    <th>税抜価格</th>
-    <th>ジャンル</th>
-    <th>ステータス</th>
+<table frame="void" rules="rows" border="1" width=100% >
+  <tr bgcolor="#e8e8e8">
+    <th width=10% >商品ID</th>
+    <th width=30% >商品名</th>
+    <th width=15% >税抜価格</th>
+    <th width=30% >ジャンル</th>
+    <th width=15% >ステータス</th>
   </tr>
   <% @items.each do |item| %>
   <tr>
     <td><%= item.id %></td>
-    <td><%= link_to item.name,edit_admin_item_path(item.id) %></td>
+    <td><%= link_to item.name,admin_item_path(item.id) %></td>
     <td><%= item.price %></td>
     <td>ジャンル名</td>
-    <td><% if item.is_active == true %>
-        <%= "販売中" %>
-        <% else %>
-        <%= "販売停止中"%>
-        <% end %></td>
+    <td>
+      <% if item.is_active == true %>
+        <p class="text-success">販売中</p>
+      <% else %>
+        <p class="text-secondary">販売停止中</p>
+      <% end %>
+    </td>
   </tr>
   <% end %>
 </table>
+<%= paginate @items %>

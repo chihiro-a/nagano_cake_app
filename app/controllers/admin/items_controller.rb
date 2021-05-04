@@ -4,7 +4,7 @@ class Admin::ItemsController < ApplicationController
   # ログインしていない場合アクセス不可
 
   def index
-    @items = Item.all
+    @items = Item.page(params[:page]).per(10)
   end
 
   def new

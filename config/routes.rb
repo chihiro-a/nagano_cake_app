@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     patch "/orders/:id/edit" => "orders#update", as:"order_edit"
     patch "/order_detail/:id" => "orders#making_status_update", as:"order_detail_edit"
     get "/customers/:id/orders" => "customers#orders" ,as:"customer_orders"
+    patch "/customers/:id" => "customers#update",as:"admin_customer"
   end
 
   # namespace :public do

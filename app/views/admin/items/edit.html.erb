@@ -1,23 +1,36 @@
-商品編集画面
+<p><span style="background-color:	#e8e8e8">　商品編集　</span></p>
 
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <%= form_with model: @item, url:admin_item_path(@item.id), local:true do |f| %>
+      <table class="d-flex align-items-center justify-content-center">
+        <tr>
+          <th>商品画像<td><%= f.attachment_field :image %></td></th>
+        </tr>
+        <tr>
+          <th>商品名<td><%= f.text_field :name %></td></th>
+        </tr>
+        <tr>
+          <th>商品説明<td><%= f.text_area :introduction %></td></th>
+        </tr>
+        <tr>
+          <th>ジャンル<td><%= f.select :genre_id, [['ケーキ',1], ['プリン',2],['焼き菓子',3],['キャンディ',4],], {include_blank: '--選択してください--'}, class: 'sample' %></td></th>
+        </tr>
+        <tr>
+          <th>販売ステータス<td>
+              <%= f.radio_button :is_active, 'true' %>
+              <%= f.label :status, '販売中', value: true %>
+              <%= f.radio_button :is_active, 'false' %>
+              <%= f.label :status, '販売停止中', value: false %>
+          </td></th>
+        </tr>
+      </table>
+      <div class="d-flex align-items-center justify-content-center">
+        <%= f.submit '変更を保存',class:"btn btn-success" %>
+      </div>
+      <% end %>
 
-<%= form_with model: @item, url:admin_item_path(@item.id), local:true do |f| %>
-  <h4>商品画像</h4>
-  <%= f.attachment_field :image %>
-  <h4>商品名</h4>
-  <%= f.text_field :name %>
-  <h4>商品説明</h4>
-  <%= f.text_area :introduction %>
-  <h4>ジャンル</h4>
-  <%= f.select :genre_id, [['ケーキ',1], ['プリン',2],['焼き菓子',3],['キャンディ',4],], {include_blank: '--選択してください--'}, class: 'sample' %>
-  <h4>税抜価格</h4>
-  <%= f.text_field :price %>
-  <h4>販売ステータス</h4>
-  <%= f.label :status, '販売中', value: true %>
-  <%= f.radio_button :is_active, 'true' %>
-  <%= f.label :status, '販売停止中', value: false %>
-  <%= f.radio_button :is_active, 'false' %>
-
-
-  <%= f.submit '変更を保存'  %>
-<% end %>
+    </div>
+  </div>
+</div>

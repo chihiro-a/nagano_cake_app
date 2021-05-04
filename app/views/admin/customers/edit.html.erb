@@ -1,7 +1,4 @@
-管理者画面のユーザ情報編集ページ
-
-
-<%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集
+<p><span style="background-color:	#e8e8e8">　<%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集　</span></p>
 
 <%= form_with model: @customer, url:admin_customer_path(@customer.id), local:true do |f| %>
 <table>
@@ -11,11 +8,11 @@
   </tr>
   <tr>
     <td>氏名</td>
-    <td><%= f.text_field :last_name %><%= f.text_field :first_name %></td>
+    <td><%= f.text_field :last_name %>　<%= f.text_field :first_name %></td>
   </tr>
   <tr>
     <td>フリガナ</td>
-    <td><%= f.text_field :last_name_kana %><%= f.text_field :first_name_kana %></td>
+    <td><%= f.text_field :last_name_kana %>　<%= f.text_field :first_name_kana %></td>
   </tr>
   <tr>
     <td>郵便番号</td>
@@ -35,11 +32,16 @@
   </tr>
   <tr>
     <td>ステータス</td>
-    <td><%= f.label :status, '有効', value: true ,checked: "checked" %>
-        <%= f.radio_button :is_active, 'true' %>
-        <%= f.label :status, '退会', value: false %>
-        <%= f.radio_button :is_active, 'false' %></td>
+    <td>
+      <%= f.radio_button :is_active, 'true' %>
+      <%= f.label :status, '有効', value: true ,checked: "checked" %>
+      <%= f.radio_button :is_active, 'false' %>
+      <%= f.label :status, '退会', value: false %>
+    </td>
+  </tr>
+  <tr>
+    <th><td><%= f.submit "変更を保存" ,class:"btn btn-success" %></td></th>
   </tr>
 </table>
-<%= f.submit "変更を保存" ,class:"btn btn-success" %>
+
 <% end %>

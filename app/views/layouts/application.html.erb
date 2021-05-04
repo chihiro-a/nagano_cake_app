@@ -33,7 +33,12 @@
                 <li class="nav-item m-3"><%= link_to "会員一覧", admin_customers_path ,class:"btn btn-outline-secondary"%></li>
                 <li class="nav-item m-3"><%= link_to "注文履歴一覧", admin_path ,class:"btn btn-outline-secondary"%></li>
                 <li class="nav-item m-3"><%= link_to "ジャンル一覧", admin_genres_path ,class:"btn btn-outline-secondary"%></li>
-                <li class="nav-item m-3"><%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete ,class:"btn btn-outline-secondary"%></li>
+                <li class="nav-item m-3"><%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete ,class:"btn btn-outline-secondary"%></br>
+                  <%= form_tag(admin_customers_path,:method => 'get') do %>
+                  <%= text_field_tag :search %>
+                  <%= submit_tag 'Search', :name => nil %>
+                  <% end %>
+                </li>
               </ul>
             <% else %>
               <ul class="navbar-nav ml-auto">
